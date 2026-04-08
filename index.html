@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rav Doctolero | AI-Powered Creative Operator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #09090b;
+      --surface: rgba(255, 255, 255, 0.04);
+      --surface-hover: rgba(255, 255, 255, 0.07);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-bright: rgba(255, 255, 255, 0.15);
+      --text: #fafafa;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --chrome-1: #e4e4e7;
+      --chrome-2: #a1a1aa;
+      --chrome-3: #71717a;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.25);
+      --green: #22c55e;
+      --green-glow: rgba(34, 197, 94, 0.25);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* --- NAV --- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem 2rem;
+      background: rgba(9, 9, 11, 0.7);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-brand {
+      font-family: var(--font-heading);
+      font-weight: 700; font-size: 1.1rem; letter-spacing: 0.08em;
+      background: linear-gradient(135deg, var(--chrome-1), var(--chrome-2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-secondary); text-decoration: none; font-size: 0.85rem;
+      font-weight: 500; letter-spacing: 0.02em; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* --- HERO --- */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 8rem 2rem 4rem; position: relative;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -40%; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .headshot-ring {
+      width: 180px; height: 180px; border-radius: 50%; padding: 3px;
+      background: linear-gradient(135deg, var(--accent), #8b5cf6, var(--accent));
+      margin-bottom: 2rem; position: relative;
+    }
+    .headshot-ring img {
+      width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+      border: 3px solid var(--bg); display: block;
+    }
+    .verified {
+      position: absolute; bottom: 8px; right: 8px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--accent); display: flex; align-items: center; justify-content: center;
+      font-size: 14px; border: 3px solid var(--bg);
+    }
+    .hero h1 {
+      font-family: var(--font-heading); font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 700; letter-spacing: -0.02em; line-height: 1.1;
+      background: linear-gradient(135deg, #fff, var(--chrome-1), var(--chrome-2), var(--chrome-1));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-title {
+      font-size: clamp(1rem, 2vw, 1.25rem); color: var(--accent);
+      font-weight: 600; margin: 0.75rem 0 0.5rem; letter-spacing: 0.04em;
+      font-family: var(--font-heading);
+    }
+    .hero-sub {
+      color: var(--text-secondary); max-width: 480px; font-size: 1rem;
+      line-height: 1.7; margin-bottom: 2rem;
+    }
+    .hero-stats {
+      display: flex; gap: 3rem; margin-bottom: 2.5rem;
+      padding: 1.25rem 2.5rem; border-radius: 60px;
+      background: var(--surface); border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700;
+      background: linear-gradient(135deg, var(--chrome-1), var(--chrome-2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem; border-radius: 60px; text-decoration: none;
+      font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;
+      font-family: var(--font-body);
+    }
+    .btn-whatsapp {
+      background: var(--green); color: #fff;
+      box-shadow: 0 0 20px var(--green-glow);
+    }
+    .btn-whatsapp:hover { box-shadow: 0 0 30px var(--green-glow), 0 0 60px var(--green-glow); transform: translateY(-2px); }
+    .btn-email {
+      background: transparent; color: var(--text); border: 1px solid var(--border-bright);
+    }
+    .btn-email:hover { background: var(--surface-hover); border-color: var(--chrome-2); transform: translateY(-2px); }
+
+    /* --- SECTIONS --- */
+    section { padding: clamp(4rem, 8vw, 8rem) 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--accent); font-weight: 600; margin-bottom: 0.75rem;
+      font-family: var(--font-heading);
+    }
+    .section-title {
+      font-family: var(--font-heading); font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff, var(--chrome-2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .section-desc { color: var(--text-secondary); max-width: 560px; margin-bottom: 3rem; line-height: 1.8; }
+
+    /* --- ABOUT --- */
+    .about-text { font-size: 1.15rem; line-height: 1.9; color: var(--text-secondary); max-width: 680px; }
+    .about-text strong { color: var(--text); font-weight: 600; }
+    .about-highlight {
+      margin-top: 2rem; padding: 1.5rem 2rem; border-radius: var(--radius);
+      background: var(--surface); border: 1px solid var(--border);
+      border-left: 3px solid var(--accent); max-width: 680px;
+      font-size: 1.05rem; color: var(--text); font-weight: 500; line-height: 1.7;
+    }
+
+    /* --- BENTO GRID --- */
+    .bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .bento-card {
+      padding: 2rem; border-radius: var(--radius);
+      background: var(--surface); border: 1px solid var(--border);
+      transition: all 0.3s ease; position: relative; overflow: hidden;
+    }
+    .bento-card:hover {
+      border-color: var(--border-bright); background: var(--surface-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .bento-card::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .bento-card:hover::after { opacity: 1; }
+    .bento-icon {
+      width: 44px; height: 44px; margin-bottom: 1rem; display: flex;
+      align-items: center; justify-content: center; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(139,92,246,0.1));
+      border: 1px solid rgba(59,130,246,0.15);
+    }
+    .bento-icon svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .bento-icon.filled svg { fill: var(--accent); stroke: none; }
+    .bento-card h3 {
+      font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .bento-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+    .bento-span-2 { grid-column: span 2; }
+
+    /* --- TIMELINE --- */
+    .timeline { position: relative; padding-left: 2.5rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--border), transparent);
+    }
+    .tl-item { position: relative; margin-bottom: 2.5rem; }
+    .tl-item::before {
+      content: ''; position: absolute; left: -2.75rem; top: 6px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); box-shadow: 0 0 10px var(--accent-glow);
+    }
+    .tl-phase {
+      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--accent); font-weight: 600; margin-bottom: 0.25rem;
+    }
+    .tl-company {
+      font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+    .tl-role { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.4rem; }
+    .tl-desc { color: var(--text-muted); font-size: 0.82rem; line-height: 1.6; }
+
+    /* --- CLIENTS --- */
+    .client-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .client-card {
+      padding: 1.75rem; border-radius: var(--radius);
+      background: var(--surface); border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    .client-card:hover { border-color: var(--border-bright); transform: translateY(-2px); }
+    .client-name {
+      font-family: var(--font-heading); font-weight: 600; font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    .client-biz { color: var(--accent); font-size: 0.78rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .client-work { color: var(--text-secondary); font-size: 0.82rem; line-height: 1.5; }
+    .client-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+    .tag {
+      font-size: 0.65rem; padding: 0.25rem 0.6rem; border-radius: 60px;
+      background: rgba(59,130,246,0.1); color: var(--accent); font-weight: 500;
+    }
+
+    /* --- CONTACT --- */
+    .contact-section {
+      text-align: center; padding: 6rem 2rem;
+      position: relative;
+    }
+    .contact-section::before {
+      content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .contact-title {
+      font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff, var(--chrome-1), var(--chrome-2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .contact-sub { color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 1.05rem; }
+    .contact-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* --- FOOTER --- */
+    footer {
+      text-align: center; padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted); font-size: 0.75rem;
+    }
+
+    /* --- REVEAL ANIMATION --- */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      nav { padding: 0.75rem 1.25rem; }
+      .nav-links { display: none; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .hero-stats { gap: 1.5rem; padding: 1rem 1.5rem; }
+      .bento { grid-template-columns: 1fr; }
+      .bento-span-2 { grid-column: span 1; }
+      .client-grid { grid-template-columns: 1fr; }
+      .headshot-ring { width: 140px; height: 140px; }
+    }
+    @media (max-width: 480px) {
+      .hero-stats { flex-direction: column; gap: 0.75rem; border-radius: var(--radius); }
+      .cta-group { flex-direction: column; align-items: center; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand">RAV DOCTOLERO</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#clients">Clients</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="headshot-ring">
+      <img src="headshot.jpg" alt="Rav Doctolero" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+      <div class="headshot-fallback" style="display:none;width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);align-items:center;justify-content:center;font-family:var(--font-heading);font-size:3.5rem;font-weight:700;color:#fff;border:3px solid var(--bg)">R</div>
+      <div class="verified">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+    </div>
+    <h1>Rav Doctolero</h1>
+    <div class="hero-title">AI-Powered Creative Operator</div>
+    <p class="hero-sub">Your creative department, condensed into one seat. Video. Design. Automation. AI. Delivered remotely for US brands.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">6+</div><div class="stat-label">US Clients</div></div>
+      <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Industries</div></div>
+      <div class="stat"><div class="stat-num">40+</div><div class="stat-label">Video Assets</div></div>
+    </div>
+    <div class="cta-group">
+      <a href="https://wa.me/639276126926" target="_blank" class="btn btn-whatsapp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Me
+      </a>
+      <a href="mailto:doctoleroraval@gmail.com" class="btn btn-email">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Email Me
+      </a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="reveal">
+    <div class="section-label">About</div>
+    <div class="section-title">Not a freelancer.<br>Your remote creative department.</div>
+    <p class="about-text">
+      I started managing social media accounts and designing graphics for US marketing agencies. Then clients needed video, so I learned to edit <strong>podcasts, ads, reels, lectures, and long-form content</strong>. Then AI tools arrived, so I started producing <strong>AI animations, AI-generated music, and AI video</strong> before most people had heard of them.
+      <br><br>
+      Now I build the systems too. <strong>Marketing automation, SEO strategy, lead generation, GHL workflows</strong>, and I've even shipped a full iOS app using AI-assisted development. I don't just create your content. I create the machine that runs it.
+    </p>
+    <div class="about-highlight">
+      Most offshore hires do one thing. I replace five: content producer, social media manager, video editor, automation specialist, and AI creative, all from one seat in the Philippines.
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="reveal">
+    <div class="section-label">Services</div>
+    <div class="section-title">What I bring to your team</div>
+    <p class="section-desc">Every capability has been tested across real clients, real campaigns, and real deadlines.</p>
+    <div class="bento">
+      <div class="bento-card bento-span-2">
+        <span class="bento-icon"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3" fill="var(--accent)" stroke="none"/></svg></span>
+        <h3>Video Production</h3>
+        <p>Podcast episodes, vlogs, short-form reels, long-form lectures, ad creatives, course content. DaVinci Resolve. Every format, every platform. From raw footage to publish-ready.</p>
+      </div>
+      <div class="bento-card">
+        <span class="bento-icon"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z" fill="var(--accent)" stroke="none"/></svg></span>
+        <h3>AI Creative</h3>
+        <p>AI-generated animation, AI video editing, AI music production. Shipping with tools most teams are still experimenting with.</p>
+      </div>
+      <div class="bento-card">
+        <span class="bento-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+        <h3>Marketing Automation</h3>
+        <p>GoHighLevel workflows, nurture campaigns, lead scraping, email sequences, CRM configuration. Systems that run while you sleep.</p>
+      </div>
+      <div class="bento-card bento-span-2">
+        <span class="bento-icon"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/><path d="M2 8c0-3.3 2.7-6 6-6"/><path d="M22 8c0-3.3-2.7-6-6-6"/></svg></span>
+        <h3>Social Media Management</h3>
+        <p>Strategy, content calendars, graphic design, scheduling, cross-platform posting (IG, FB, YouTube, TikTok, LinkedIn, X). Managed accounts across eCommerce, staffing, real estate, automotive, and nonprofit.</p>
+      </div>
+      <div class="bento-card">
+        <span class="bento-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span>
+        <h3>SEO &amp; Content Strategy</h3>
+        <p>Keyword research, blog writing with schema markup, on-page SEO, technical audits. 14 paired blog posts shipped in 4 weeks for one client alone.</p>
+      </div>
+      <div class="bento-card">
+        <span class="bento-icon"><svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span>
+        <h3>Graphic Design</h3>
+        <p>Social media graphics, brand assets, campaign visuals, marketing collateral. On-brand, on-deadline, no revisions loop.</p>
+      </div>
+      <div class="bento-card">
+        <span class="bento-icon"><svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span>
+        <h3>AI Product Building</h3>
+        <p>Ideas to shipped products using AI-assisted development. Built and delivered a complete iOS fitness app through Claude Code. Product thinking meets AI execution.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="reveal">
+    <div class="section-label">Experience</div>
+    <div class="section-title">The progression</div>
+    <p class="section-desc">Every role expanded the scope. Every phase leveled up the value.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-phase">Phase 1 | Foundation</div>
+        <div class="tl-company">Coaction Creative</div>
+        <div class="tl-role">Social Media Manager &amp; Graphic Designer</div>
+        <div class="tl-desc">Full-service digital marketing agency for eCommerce brands. Performance marketing, Facebook Ads, Shopify/WooCommerce ecosystem. Built the SMM + design foundation.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Phase 1 | Foundation</div>
+        <div class="tl-company">InSync Consulting Services</div>
+        <div class="tl-role">Social Media Manager</div>
+        <div class="tl-desc">National healthcare, IT, and call center staffing firm. SDVOSB-certified. Managed social presence for a $6.7M staffing operation.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Phase 2 | Video Production</div>
+        <div class="tl-company">Freelance Video Editor</div>
+        <div class="tl-role">Podcast, Ads, Short-form, Long-form, Lectures</div>
+        <div class="tl-desc">Scaled from social media into multi-format video production across real estate, coaching, and automotive industries. Served 4 US-based clients simultaneously.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Phase 3 | AI Creative</div>
+        <div class="tl-company">Bill Harris Dealerships</div>
+        <div class="tl-role">AI Animator, AI Video/Music Producer, Graphic &amp; Video Editor</div>
+        <div class="tl-desc">Full creative department for a 40-year multi-brand auto dealership (Ford, Chevrolet, CDJR). Crossed into AI-augmented creative: animation, video, and music production.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-phase">Phase 4 | AI Operator</div>
+        <div class="tl-company">HivePowered.AI &amp; P.O.W.E.R</div>
+        <div class="tl-role">AI-Powered Marketing Orchestrator</div>
+        <div class="tl-desc">AI engineering, SEO strategy, GHL automation, nurture campaigns, 30-day SMM campaigns, client management, lead generation. 85+ tasks delivered in 23 straight working days. Shipped a full iOS app via AI-assisted development.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section id="clients" class="reveal">
+    <div class="section-label">Client Work</div>
+    <div class="section-title">Trusted by US brands</div>
+    <p class="section-desc">From solo creators to multi-million dollar businesses, all served remotely from the Philippines.</p>
+    <div class="client-grid">
+      <div class="client-card">
+        <div class="client-name">Justin Brennan</div>
+        <div class="client-biz">Multifamily Schooled &bull; $185M RE Portfolio</div>
+        <div class="client-work">Part-time video editor. Podcast episodes, vlogs, short-form, long-form, and lecture videos for a real estate education platform.</div>
+        <div class="client-tags"><span class="tag">Podcast</span><span class="tag">Long-form</span><span class="tag">Lectures</span><span class="tag">Short-form</span></div>
+      </div>
+      <div class="client-card">
+        <div class="client-name">Kate Sybilrud</div>
+        <div class="client-biz">@katesellscreator &bull; Branding Coach</div>
+        <div class="client-work">Full-time video editor. High-volume content production for a personal branding coach with 8,800+ followers.</div>
+        <div class="client-tags"><span class="tag">Full-time</span><span class="tag">Reels</span><span class="tag">Short-form</span><span class="tag">Coaching</span></div>
+      </div>
+      <div class="client-card">
+        <div class="client-name">Greg Campbell</div>
+        <div class="client-biz">Buycon University &bull; $100M+ Auto Revenue</div>
+        <div class="client-work">SMM + video editor. Podcast, lectures, short-form, and long-form for a $9,997 automotive training platform.</div>
+        <div class="client-tags"><span class="tag">SMM</span><span class="tag">Podcast</span><span class="tag">Course Content</span><span class="tag">Ads</span></div>
+      </div>
+      <div class="client-card">
+        <div class="client-name">Blake Choisnet</div>
+        <div class="client-biz">RE Investing Coach</div>
+        <div class="client-work">Video editor. Short-form clips and ad creatives for a real estate coaching brand targeting first-time rental investors.</div>
+        <div class="client-tags"><span class="tag">Short-form</span><span class="tag">Ad Creatives</span><span class="tag">Real Estate</span></div>
+      </div>
+      <div class="client-card">
+        <div class="client-name">Bill Harris Dealerships</div>
+        <div class="client-biz">Ford &bull; Chevrolet &bull; CDJR &bull; 40+ Years</div>
+        <div class="client-work">Full creative role. AI animation, AI video, AI music production, graphic design, and traditional video editing for a legacy dealership group.</div>
+        <div class="client-tags"><span class="tag">AI Animation</span><span class="tag">AI Music</span><span class="tag">Design</span><span class="tag">Video</span></div>
+      </div>
+      <div class="client-card">
+        <div class="client-name">P.O.W.E.R</div>
+        <div class="client-biz">poweraction.org &bull; CA Nonprofit</div>
+        <div class="client-work">Full-stack operator. SEO (14 blogs), 41 video assets, GHL automation, 30-day SMM campaign, lead gen, client management. 70 client emails in 23 days.</div>
+        <div class="client-tags"><span class="tag">SEO</span><span class="tag">Automation</span><span class="tag">Video</span><span class="tag">Lead Gen</span><span class="tag">Client Mgmt</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section reveal">
+    <div class="contact-title">Let's build something</div>
+    <p class="contact-sub">Available for remote work with US clients. One timezone away from your deadline.</p>
+    <div class="contact-cta">
+      <a href="https://wa.me/639276126926" target="_blank" class="btn btn-whatsapp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Me
+      </a>
+      <a href="mailto:doctoleroraval@gmail.com" class="btn btn-email">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Email Me
+      </a>
+    </div>
+  </section>
+
+  <footer>&copy; 2026 Rav Doctolero. All rights reserved.</footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
