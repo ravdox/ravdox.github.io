@@ -166,28 +166,51 @@
     @property --glow-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
     @keyframes glow-spin { to { --glow-angle: 360deg; } }
     .glow-wrap {
-      position: relative; border-radius: var(--radius); padding: 1px;
-      background: var(--border); transition: all 0.3s ease;
+      position: relative; border-radius: var(--radius);
+      overflow: hidden;
     }
-    .glow-wrap:hover {
+    .glow-wrap::before {
+      content: ''; position: absolute; inset: 0;
+      border-radius: var(--radius);
+      padding: 1px;
+      background: var(--border);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      transition: opacity 0.3s ease;
+      z-index: 1; pointer-events: none;
+    }
+    .glow-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      border-radius: var(--radius);
+      padding: 1px;
       background: conic-gradient(
         from var(--glow-angle),
         transparent 0%,
-        #3b82f6 10%,
-        #8b5cf6 20%,
-        #a855f7 30%,
-        transparent 40%,
-        transparent 60%,
-        #6366f1 70%,
-        #3b82f6 80%,
-        transparent 90%
+        #3b82f6 12%,
+        #8b5cf6 22%,
+        #a855f7 28%,
+        transparent 38%,
+        transparent 62%,
+        #6366f1 72%,
+        #3b82f6 82%,
+        transparent 92%
       );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      opacity: 0; transition: opacity 0.3s ease;
+      z-index: 1; pointer-events: none;
+    }
+    .glow-wrap:hover::before { opacity: 0; }
+    .glow-wrap:hover::after {
+      opacity: 1;
       animation: glow-spin 3s linear infinite;
     }
-    .glow-wrap { overflow: hidden; }
     .glow-inner {
-      border-radius: calc(var(--radius) - 1px);
+      border-radius: var(--radius);
       background: var(--bg);
+      position: relative; z-index: 0;
     }
 
     /* --- BENTO GRID --- */
