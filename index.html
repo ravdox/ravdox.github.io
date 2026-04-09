@@ -32,14 +32,14 @@
       --font-body: 'Inter', sans-serif;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
     body {
       font-family: var(--font-body);
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      overflow-x: hidden;
+      overflow-x: hidden; overflow-x: clip;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -311,8 +311,11 @@
 
     @media (max-width: 860px) {
       .about-layout { grid-template-columns: 1fr; }
-      .superhero-scene { max-width: 400px; margin: 2rem auto 0; }
+      .superhero-scene { max-width: 360px; margin: 2rem auto 0; overflow: hidden; }
+      .sh-grid-bg { display: none; }
       .sh-niche { font-size: 0.65rem; padding: 6px 10px; }
+      .sh-n-auto { right: 0; }
+      .sh-n-product { left: 0; }
       .sh-niche-icon { width: 22px; height: 22px; }
       .sh-niche-icon svg { width: 13px; height: 13px; }
     }
@@ -574,6 +577,13 @@
       .bento-span-2 { grid-column: span 1; }
       .client-grid { grid-template-columns: 1fr; }
       .headshot-ring { width: 140px; height: 140px; }
+      section { padding-left: 1.25rem; padding-right: 1.25rem; }
+      #about { max-width: 100%; }
+      .work-links { gap: 0.4rem; }
+      .work-link { font-size: 0.75rem; padding: 6px 12px; }
+      .tool-chip { font-size: 0.7rem; padding: 5px 10px; }
+      .tool-chip svg { width: 14px; height: 14px; }
+      .footer-tools.open { max-height: 800px; }
     }
     @media (max-width: 480px) {
       .hero-stats { flex-direction: column; gap: 0.75rem; border-radius: var(--radius); }
