@@ -394,27 +394,135 @@
     .bento-span-2 { grid-column: span 2; }
 
     /* --- TIMELINE --- */
-    .timeline { position: relative; padding-left: 2.5rem; }
+    .timeline { position: relative; padding-left: 3.5rem; }
+
+    /* Animated glowing line */
     .timeline::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px;
-      background: linear-gradient(to bottom, var(--accent), var(--border), transparent);
+      content: ''; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, rgba(59,130,246,0.08), rgba(59,130,246,0.08));
     }
-    .tl-item { position: relative; margin-bottom: 2.5rem; }
+    .timeline::after {
+      content: ''; position: absolute; left: 12px; top: 0; width: 2px; height: 60px;
+      background: linear-gradient(to bottom, transparent, #3b82f6, #8b5cf6, transparent);
+      animation: tl-flow 4s ease-in-out infinite;
+      border-radius: 2px;
+      filter: blur(1px);
+    }
+    @keyframes tl-flow {
+      0% { top: -60px; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    /* Particle dots traveling the line */
+    .tl-particles {
+      position: absolute; left: 10px; top: 0; bottom: 0; width: 6px; pointer-events: none; overflow: hidden;
+    }
+    .tl-particle {
+      position: absolute; width: 4px; height: 4px; border-radius: 50%;
+      background: #3b82f6; left: 1px;
+      animation: tl-particle-fall linear infinite;
+      opacity: 0;
+    }
+    .tl-particle:nth-child(1) { animation-duration: 6s; animation-delay: 0s; }
+    .tl-particle:nth-child(2) { animation-duration: 8s; animation-delay: 2s; background: #8b5cf6; }
+    .tl-particle:nth-child(3) { animation-duration: 7s; animation-delay: 4s; background: #22c55e; }
+    @keyframes tl-particle-fall {
+      0% { top: -4px; opacity: 0; }
+      5% { opacity: 0.8; }
+      95% { opacity: 0.8; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    /* Timeline items */
+    .tl-item {
+      position: relative; margin-bottom: 1.5rem;
+      padding: 1.5rem; border-radius: var(--radius);
+      background: var(--surface); border: 1px solid var(--border);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: default;
+      opacity: 0; transform: translateX(-20px);
+    }
+    .tl-item.tl-visible {
+      opacity: 1; transform: translateX(0);
+    }
+    .tl-item:hover, .tl-item.active {
+      border-color: var(--border-bright);
+      background: var(--surface-hover);
+      transform: translateX(6px);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3), 0 0 20px var(--tl-glow, rgba(59,130,246,0.1));
+    }
+
+    /* Dot on line */
     .tl-item::before {
-      content: ''; position: absolute; left: -2.75rem; top: 6px;
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--accent); box-shadow: 0 0 10px var(--accent-glow);
+      content: ''; position: absolute;
+      left: calc(-3.5rem + 7px); top: 1.75rem;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--tl-color, var(--accent));
+      box-shadow: 0 0 12px var(--tl-glow, var(--accent-glow)), 0 0 24px var(--tl-glow, var(--accent-glow));
+      animation: tl-dot-pulse 3s ease-in-out infinite;
+      z-index: 2;
     }
+    @keyframes tl-dot-pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 12px var(--tl-glow, var(--accent-glow)); }
+      50% { transform: scale(1.3); box-shadow: 0 0 20px var(--tl-glow, var(--accent-glow)), 0 0 40px var(--tl-glow, var(--accent-glow)); }
+    }
+
+    /* Connector line from dot to card */
+    .tl-item::after {
+      content: ''; position: absolute;
+      left: calc(-3.5rem + 19px); top: calc(1.75rem + 5px);
+      width: calc(3.5rem - 19px); height: 1px;
+      background: linear-gradient(to right, var(--tl-color, var(--accent)), transparent);
+      opacity: 0.3;
+    }
+
+    /* Phase colors */
+    .tl-item[data-phase="1"] { --tl-color: #3b82f6; --tl-glow: rgba(59,130,246,0.25); }
+    .tl-item[data-phase="2"] { --tl-color: #f59e0b; --tl-glow: rgba(245,158,11,0.25); }
+    .tl-item[data-phase="3"] { --tl-color: #8b5cf6; --tl-glow: rgba(139,92,246,0.25); }
+    .tl-item[data-phase="4"] { --tl-color: #22c55e; --tl-glow: rgba(34,197,94,0.25); }
+
     .tl-phase {
-      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em;
-      color: var(--accent); font-weight: 600; margin-bottom: 0.25rem;
+      display: inline-block;
+      font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--tl-color, var(--accent)); font-weight: 700; margin-bottom: 0.5rem;
+      padding: 3px 10px; border-radius: 60px;
+      background: color-mix(in srgb, var(--tl-color, var(--accent)) 12%, transparent);
+      border: 1px solid color-mix(in srgb, var(--tl-color, var(--accent)) 20%, transparent);
     }
     .tl-company {
-      font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600;
-      margin-bottom: 0.15rem;
+      font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700;
+      margin-bottom: 0.2rem;
+      background: linear-gradient(135deg, #fff, var(--chrome-1));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .tl-role { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.4rem; }
-    .tl-desc { color: var(--text-muted); font-size: 0.82rem; line-height: 1.6; }
+    .tl-role {
+      color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .tl-desc {
+      color: var(--text-muted); font-size: 0.82rem; line-height: 1.7;
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+    }
+    .tl-item:hover .tl-desc, .tl-item.active .tl-desc {
+      max-height: 200px; opacity: 1; margin-top: 0.25rem;
+    }
+    .tl-expand-hint {
+      font-size: 0.7rem; color: var(--text-muted); margin-top: 0.4rem;
+      transition: opacity 0.3s;
+    }
+    .tl-item:hover .tl-expand-hint, .tl-item.active .tl-expand-hint { opacity: 0; }
+
+    @media (max-width: 768px) {
+      .timeline { padding-left: 2.5rem; }
+      .tl-item::before { left: calc(-2.5rem + 7px); }
+      .tl-item::after { left: calc(-2.5rem + 19px); width: calc(2.5rem - 19px); }
+      .timeline::before, .timeline::after { left: 7px; }
+      .tl-particles { left: 5px; }
+    }
 
     /* --- CLIENTS --- */
     .client-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
@@ -789,35 +897,42 @@
     <div class="section-title">The progression</div>
     <p class="section-desc">Every role expanded the scope. Every phase leveled up the value.</p>
     <div class="timeline">
-      <div class="tl-item">
+      <div class="tl-particles"><div class="tl-particle"></div><div class="tl-particle"></div><div class="tl-particle"></div></div>
+
+      <div class="tl-item" data-phase="1">
         <div class="tl-phase">Phase 1 | Foundation</div>
         <div class="tl-company">Coaction Creative</div>
         <div class="tl-role">Social Media Manager &amp; Graphic Designer</div>
         <div class="tl-desc">Full-service digital marketing agency for eCommerce brands. Performance marketing, Facebook Ads, Shopify/WooCommerce ecosystem. Built the SMM + design foundation.</div>
+        <div class="tl-expand-hint">Tap to expand</div>
       </div>
-      <div class="tl-item">
+      <div class="tl-item" data-phase="1">
         <div class="tl-phase">Phase 1 | Foundation</div>
         <div class="tl-company">InSync Consulting Services</div>
         <div class="tl-role">Social Media Manager</div>
         <div class="tl-desc">National healthcare, IT, and call center staffing firm. SDVOSB-certified. Managed social presence for a $6.7M staffing operation.</div>
+        <div class="tl-expand-hint">Tap to expand</div>
       </div>
-      <div class="tl-item">
+      <div class="tl-item" data-phase="2">
         <div class="tl-phase">Phase 2 | Video Production</div>
         <div class="tl-company">Freelance Video Editor</div>
         <div class="tl-role">Podcast, Ads, Short-form, Long-form, Lectures</div>
         <div class="tl-desc">Scaled from social media into multi-format video production across real estate, coaching, and automotive industries. Served 4 US-based clients simultaneously.</div>
+        <div class="tl-expand-hint">Tap to expand</div>
       </div>
-      <div class="tl-item">
+      <div class="tl-item" data-phase="3">
         <div class="tl-phase">Phase 3 | AI Creative</div>
         <div class="tl-company">Bill Harris Dealerships</div>
         <div class="tl-role">AI Animator, AI Video/Music Producer, Graphic &amp; Video Editor</div>
         <div class="tl-desc">Full creative department for a 40-year multi-brand auto dealership (Ford, Chevrolet, CDJR). Crossed into AI-augmented creative: animation, video, and music production.</div>
+        <div class="tl-expand-hint">Tap to expand</div>
       </div>
-      <div class="tl-item">
+      <div class="tl-item" data-phase="4">
         <div class="tl-phase">Phase 4 | AI Operator</div>
         <div class="tl-company">HivePowered.AI &amp; P.O.W.E.R</div>
         <div class="tl-role">AI-Powered Marketing Orchestrator</div>
         <div class="tl-desc">AI engineering, SEO strategy, GHL automation, nurture campaigns, 30-day SMM campaigns, client management, lead generation. 85+ tasks delivered in 23 straight working days. Shipped a full iOS app via AI-assisted development.</div>
+        <div class="tl-expand-hint">Tap to expand</div>
       </div>
     </div>
   </section>
@@ -1024,6 +1139,28 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Timeline staggered reveal on scroll
+    const tlObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('tl-visible');
+          tlObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.tl-item').forEach((el, i) => {
+      el.style.transitionDelay = (i * 0.15) + 's';
+      tlObserver.observe(el);
+    });
+
+    // Timeline touch expand
+    document.querySelectorAll('.tl-item').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.tl-item.active').forEach(a => { if (a !== el) a.classList.remove('active'); });
+        el.classList.toggle('active');
+      });
+    });
 
     // Touch glow for mobile
     document.querySelectorAll('.glow-wrap').forEach(el => {
