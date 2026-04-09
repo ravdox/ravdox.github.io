@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rav Doctolero | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page { size: A4; margin: 0; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #09090b; color: #fafafa;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      width: 794px; margin: 0 auto;
+    }
+    .page {
+      width: 794px; height: 1123px; padding: 36px 48px;
+      page-break-after: always; position: relative; overflow: hidden;
+    }
+    .page:last-child { page-break-after: auto; }
+    .page::before {
+      content: ''; position: absolute; top: -200px; right: -200px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 70%);
+    }
+    h1 { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: #fff; }
+    h2 { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+    .label { font-size: 8px; text-transform: uppercase; letter-spacing: 0.15em; color: #3b82f6; font-weight: 600; margin-bottom: 4px; }
+    .subtitle { font-size: 12px; color: #3b82f6; font-weight: 600; font-family: 'Space Grotesk', sans-serif; margin: 2px 0; }
+    .text { font-size: 9.5px; color: #a1a1aa; line-height: 1.6; }
+    .divider { height: 1px; background: rgba(255,255,255,0.08); margin: 14px 0; }
+    .header { display: flex; align-items: center; gap: 18px; margin-bottom: 4px; }
+    .headshot { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid #3b82f6; }
+    .header-info { flex: 1; }
+    .header-contact { display: flex; gap: 16px; margin-top: 4px; }
+    .header-contact span { font-size: 9px; color: #a1a1aa; display: flex; align-items: center; gap: 4px; }
+    .header-contact svg { width: 10px; height: 10px; stroke: #3b82f6; fill: none; stroke-width: 2; }
+    .stats { display: flex; gap: 28px; padding: 12px 20px; border-radius: 8px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); margin: 12px 0; }
+    .stat-num { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; color: #e4e4e7; }
+    .stat-label { font-size: 8px; color: #71717a; text-transform: uppercase; letter-spacing: 0.08em; }
+    .services-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .service-item { padding: 10px 12px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+    .service-item h3 { margin-bottom: 3px; font-family: 'Space Grotesk', sans-serif; font-size: 10px; font-weight: 600; color: #fff; }
+    .service-item p { font-size: 8.5px; color: #71717a; line-height: 1.45; }
+    .exp-item { display: flex; gap: 12px; margin-bottom: 12px; }
+    .exp-dot { width: 7px; height: 7px; border-radius: 50%; background: #3b82f6; margin-top: 4px; flex-shrink: 0; }
+    .exp-phase { font-size: 7px; text-transform: uppercase; letter-spacing: 0.1em; color: #3b82f6; font-weight: 600; }
+    .exp-company { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 600; color: #fff; }
+    .exp-role { font-size: 9px; color: #a1a1aa; }
+    .exp-desc { font-size: 8.5px; color: #71717a; line-height: 1.45; margin-top: 1px; }
+    .client-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .client-item { padding: 10px 12px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+    .client-name { font-family: 'Space Grotesk', sans-serif; font-size: 10px; font-weight: 600; color: #fff; }
+    .client-biz { font-size: 8px; color: #3b82f6; font-weight: 500; margin: 1px 0 3px; }
+    .client-desc { font-size: 8px; color: #71717a; line-height: 1.4; }
+    .tags { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 5px; }
+    .tag { font-size: 7px; padding: 2px 6px; border-radius: 60px; background: rgba(59,130,246,0.1); color: #3b82f6; font-weight: 500; }
+    .tools { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+    .tool { font-size: 8px; padding: 3px 9px; border-radius: 60px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #71717a; }
+    .footer { text-align: center; font-size: 8px; color: #71717a; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); position: absolute; bottom: 36px; left: 48px; right: 48px; }
+    .footer a { color: #3b82f6; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page">
+  <div class="header">
+    <img src="headshot.jpg" class="headshot" alt="Rav Doctolero" />
+    <div class="header-info">
+      <h1>Rav Doctolero</h1>
+      <div class="subtitle">AI-Powered Creative Operator</div>
+      <div class="header-contact">
+        <span><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>doctoleroraval@gmail.com</span>
+        <span><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+63 927 612 6926</span>
+        <span><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>ravdox.github.io</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div><div class="stat-num">6+</div><div class="stat-label">US Clients</div></div>
+    <div><div class="stat-num">5+</div><div class="stat-label">Industries</div></div>
+    <div><div class="stat-num">1000+</div><div class="stat-label">Video Assets</div></div>
+  </div>
+
+  <div class="label">About</div>
+  <p class="text" style="margin-bottom: 8px;">I started managing social media and designing graphics for US marketing agencies. Then clients needed video, so I learned to edit podcasts, ads, reels, lectures, and long-form content. Then AI tools arrived, so I started producing AI animations, AI-generated music, and AI video before most people had heard of them. Now I build the systems too: marketing automation, SEO strategy, lead generation, and GHL workflows.</p>
+  <p class="text" style="padding: 8px 12px; border-radius: 6px; background: rgba(255,255,255,0.03); border-left: 2px solid #3b82f6; font-size: 9.5px;">
+    Most offshore hires do one thing. I replace five: content producer, social media manager, video editor, automation specialist, and AI creative, all from one seat in the Philippines.
+  </p>
+
+  <div class="divider"></div>
+
+  <div class="label">Services</div>
+  <h2>What I Bring To Your Team</h2>
+  <div class="services-grid">
+    <div class="service-item">
+      <h3>Video Production</h3>
+      <p>Podcast, vlogs, reels, lectures, ad creatives, course content. DaVinci Resolve. Every format.</p>
+    </div>
+    <div class="service-item">
+      <h3>AI Creative</h3>
+      <p>AI animation, AI video editing, AI music production. Tools most teams haven't touched yet.</p>
+    </div>
+    <div class="service-item">
+      <h3>Marketing Automation</h3>
+      <p>GHL workflows, nurture campaigns, lead scraping, email sequences, CRM config.</p>
+    </div>
+    <div class="service-item">
+      <h3>Social Media Mgmt</h3>
+      <p>Strategy, calendars, design, scheduling. Cross-platform: IG, FB, YT, TikTok, LinkedIn, X.</p>
+    </div>
+    <div class="service-item">
+      <h3>SEO &amp; Content</h3>
+      <p>Keyword research, blog writing with schema, on-page SEO. 14 posts in 4 weeks.</p>
+    </div>
+    <div class="service-item">
+      <h3>Graphic Design</h3>
+      <p>Social graphics, brand assets, campaign visuals. On-brand, on-deadline.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="label">Experience</div>
+  <h2>Career Progression</h2>
+
+  <div class="exp-item">
+    <div class="exp-dot"></div>
+    <div>
+      <div class="exp-phase">Phase 1 | Foundation</div>
+      <div class="exp-company">Coaction Creative</div>
+      <div class="exp-role">Social Media Manager &amp; Graphic Designer</div>
+      <div class="exp-desc">Full-service digital marketing agency for eCommerce brands. Performance marketing, Facebook Ads, Shopify/WooCommerce.</div>
+    </div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-dot"></div>
+    <div>
+      <div class="exp-phase">Phase 1 | Foundation</div>
+      <div class="exp-company">InSync Consulting Services</div>
+      <div class="exp-role">Social Media Manager</div>
+      <div class="exp-desc">National healthcare, IT, and call center staffing firm. SDVOSB-certified. $6.7M operation.</div>
+    </div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-dot"></div>
+    <div>
+      <div class="exp-phase">Phase 2 | Video Production</div>
+      <div class="exp-company">Freelance Video Editor</div>
+      <div class="exp-role">Podcast, Ads, Short-form, Long-form, Lectures</div>
+      <div class="exp-desc">Multi-format video production across real estate, coaching, and automotive. 4 US clients simultaneously.</div>
+    </div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-dot"></div>
+    <div>
+      <div class="exp-phase">Phase 3 | AI Creative</div>
+      <div class="exp-company">Bill Harris Dealerships</div>
+      <div class="exp-role">AI Animator, AI Video/Music Producer, Graphic &amp; Video Editor</div>
+      <div class="exp-desc">Full creative department for a 40-year multi-brand auto dealership (Ford, Chevrolet, CDJR).</div>
+    </div>
+  </div>
+  <div class="exp-item">
+    <div class="exp-dot"></div>
+    <div>
+      <div class="exp-phase">Phase 4 | AI Operator</div>
+      <div class="exp-company">HivePowered.AI &amp; P.O.W.E.R</div>
+      <div class="exp-role">AI-Powered Marketing Orchestrator</div>
+      <div class="exp-desc">AI engineering, SEO, GHL automation, nurture campaigns, 30-day SMM, client management, lead gen. 85+ tasks in 23 days.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+  <div class="label">Client Work</div>
+  <h2>Trusted by US Brands</h2>
+  <p class="text" style="margin-bottom: 10px;">From solo creators to multi-million dollar businesses, all served remotely from the Philippines.</p>
+  <div class="client-grid">
+    <div class="client-item">
+      <div class="client-name">Justin Brennan</div>
+      <div class="client-biz">Multifamily Schooled | $185M RE Portfolio</div>
+      <div class="client-desc">Part-time video editor. Podcast episodes, vlogs, short-form, long-form, and lecture videos for a real estate education platform.</div>
+      <div class="tags"><span class="tag">Podcast</span><span class="tag">Long-form</span><span class="tag">Lectures</span><span class="tag">Short-form</span></div>
+    </div>
+    <div class="client-item">
+      <div class="client-name">Kate Sybilrud</div>
+      <div class="client-biz">@katesellscreator | Branding Coach</div>
+      <div class="client-desc">Full-time video editor. High-volume content production for a personal branding coach with 8,800+ followers.</div>
+      <div class="tags"><span class="tag">Full-time</span><span class="tag">Reels</span><span class="tag">Short-form</span><span class="tag">Coaching</span></div>
+    </div>
+    <div class="client-item">
+      <div class="client-name">Greg Campbell</div>
+      <div class="client-biz">Buycon University | $100M+ Auto Revenue</div>
+      <div class="client-desc">SMM + video editor. Podcast, lectures, short-form, and long-form for a $9,997 automotive training platform.</div>
+      <div class="tags"><span class="tag">SMM</span><span class="tag">Podcast</span><span class="tag">Course Content</span><span class="tag">Ads</span></div>
+    </div>
+    <div class="client-item">
+      <div class="client-name">Blake Choisnet</div>
+      <div class="client-biz">RE Investing Coach</div>
+      <div class="client-desc">Video editor. Short-form clips and ad creatives for a real estate coaching brand targeting first-time rental investors.</div>
+      <div class="tags"><span class="tag">Short-form</span><span class="tag">Ad Creatives</span><span class="tag">Real Estate</span></div>
+    </div>
+    <div class="client-item">
+      <div class="client-name">Bill Harris Dealerships</div>
+      <div class="client-biz">Ford | Chevrolet | CDJR | 40+ Years</div>
+      <div class="client-desc">Full creative role. AI animation, AI video, AI music production, graphic design, and traditional video editing.</div>
+      <div class="tags"><span class="tag">AI Animation</span><span class="tag">AI Music</span><span class="tag">Design</span><span class="tag">Video</span></div>
+    </div>
+    <div class="client-item">
+      <div class="client-name">P.O.W.E.R</div>
+      <div class="client-biz">poweraction.org | CA Nonprofit</div>
+      <div class="client-desc">Full-stack operator. SEO (14 blogs), 41 video assets, GHL automation, 30-day SMM campaign, lead gen, client management.</div>
+      <div class="tags"><span class="tag">SEO</span><span class="tag">Automation</span><span class="tag">Video</span><span class="tag">Lead Gen</span></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="label">Tools &amp; Platforms</div>
+  <div class="tools">
+    <span class="tool">DaVinci Resolve</span>
+    <span class="tool">GoHighLevel</span>
+    <span class="tool">Claude Code</span>
+    <span class="tool">HeyGen</span>
+    <span class="tool">Canva</span>
+    <span class="tool">Instantly.ai</span>
+    <span class="tool">Google Workspace</span>
+    <span class="tool">Frase</span>
+    <span class="tool">Apollo</span>
+    <span class="tool">Seamless AI</span>
+    <span class="tool">Xcode</span>
+    <span class="tool">VS Code</span>
+  </div>
+
+  <div class="footer">
+    <a href="https://ravdox.github.io">ravdox.github.io</a> &nbsp;|&nbsp; doctoleroraval@gmail.com &nbsp;|&nbsp; +63 927 612 6926 &nbsp;|&nbsp; WhatsApp: wa.me/639276126926
+  </div>
+</div>
+
+</body>
+</html>
