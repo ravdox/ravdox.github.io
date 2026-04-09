@@ -360,8 +360,8 @@
       opacity: 0; transition: opacity 0.3s ease;
       z-index: 1; pointer-events: none;
     }
-    .glow-wrap:hover::before { opacity: 0; }
-    .glow-wrap:hover::after {
+    .glow-wrap:hover::before, .glow-wrap.active::before { opacity: 0; }
+    .glow-wrap:hover::after, .glow-wrap.active::after {
       opacity: 1;
       animation: glow-spin 3s linear infinite;
     }
@@ -1024,6 +1024,14 @@
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Touch glow for mobile
+    document.querySelectorAll('.glow-wrap').forEach(el => {
+      el.addEventListener('touchstart', () => {
+        document.querySelectorAll('.glow-wrap.active').forEach(a => { if (a !== el) a.classList.remove('active'); });
+        el.classList.toggle('active');
+      }, { passive: true });
+    });
   </script>
 </body>
 </html>
