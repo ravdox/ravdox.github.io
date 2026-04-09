@@ -153,13 +153,168 @@
     .section-desc { color: var(--text-secondary); max-width: 560px; margin-bottom: 3rem; line-height: 1.8; }
 
     /* --- ABOUT --- */
-    .about-text { font-size: 1.15rem; line-height: 1.9; color: var(--text-secondary); max-width: 680px; }
+    #about { max-width: 1300px; }
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-content { min-width: 0; }
+    .about-text { font-size: 1.15rem; line-height: 1.9; color: var(--text-secondary); }
     .about-text strong { color: var(--text); font-weight: 600; }
     .about-highlight {
       margin-top: 2rem; padding: 1.5rem 2rem; border-radius: var(--radius);
       background: var(--surface); border: 1px solid var(--border);
-      border-left: 3px solid var(--accent); max-width: 680px;
+      border-left: 3px solid var(--accent);
       font-size: 1.05rem; color: var(--text); font-weight: 500; line-height: 1.7;
+    }
+
+    /* --- SUPERHERO GRAPHIC --- */
+    .superhero-scene {
+      position: relative;
+      width: 100%;
+      min-height: 450px;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+    }
+    .sh-grid-bg {
+      position: absolute; inset: -10%; z-index: 0;
+      background:
+        linear-gradient(rgba(59,130,246,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+      transform: perspective(500px) rotateX(55deg) scale(2.2);
+      transform-origin: center bottom;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 80%, black 20%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 80%, black 20%, transparent 70%);
+      animation: sh-grid-scroll 8s linear infinite;
+    }
+    @keyframes sh-grid-scroll {
+      from { background-position: 0 0, 0 0; }
+      to { background-position: 0 40px, 0 0; }
+    }
+    .sh-energy-field {
+      position: absolute; inset: 0; border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(59,130,246,0.12) 0%, transparent 50%),
+        radial-gradient(circle at 30% 40%, rgba(139,92,246,0.08) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(34,197,94,0.06) 0%, transparent 40%);
+      animation: sh-pulse 4s ease-in-out infinite;
+    }
+    @keyframes sh-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 1; }
+    }
+    .sh-orbit {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(59,130,246,0.1);
+    }
+    .sh-orbit-1 { width: 52%; height: 52%; animation: sh-spin 30s linear infinite; }
+    .sh-orbit-2 { width: 70%; height: 70%; animation: sh-spin 45s linear infinite reverse; border-color: rgba(139,92,246,0.08); }
+    .sh-orbit-3 { width: 88%; height: 88%; animation: sh-spin 60s linear infinite; border-color: rgba(34,197,94,0.06); }
+    @keyframes sh-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    .sh-beams { position: absolute; width: 100%; height: 100%; pointer-events: none; }
+    .sh-beam { stroke-dasharray: 8 12; animation: sh-dash 2s linear infinite; }
+    @keyframes sh-dash { to { stroke-dashoffset: -40; } }
+
+    .sh-photo-wrap {
+      position: relative; z-index: 10;
+      width: 36%; aspect-ratio: 1;
+    }
+    .sh-photo-glow {
+      position: absolute; inset: -15%;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, rgba(59,130,246,0.4), rgba(139,92,246,0.4), rgba(236,72,153,0.3), rgba(34,197,94,0.3), rgba(59,130,246,0.4));
+      animation: sh-glow-spin 6s linear infinite;
+      filter: blur(15px);
+    }
+    .sh-photo-ring {
+      position: absolute; inset: -3%;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #3b82f6, #8b5cf6, #ec4899, #22c55e, #3b82f6);
+      animation: sh-glow-spin 4s linear infinite;
+    }
+    @keyframes sh-glow-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .sh-photo {
+      position: relative; width: 100%; height: 100%;
+      border-radius: 50%; object-fit: cover; object-position: center 25%;
+      border: 4px solid var(--bg); display: block; z-index: 2;
+    }
+    .sh-cape {
+      position: absolute; bottom: -25%; left: 15%; width: 70%; height: 50%;
+      z-index: 5; pointer-events: none;
+    }
+    .sh-cape-s { position: absolute; border-radius: 50%; filter: blur(30px); animation: sh-cape-flow 3s ease-in-out infinite; }
+    .sh-cape-s1 { width: 66%; height: 40%; background: rgba(59,130,246,0.15); left: 17%; top: 10%; }
+    .sh-cape-s2 { width: 53%; height: 30%; background: rgba(139,92,246,0.12); left: 27%; top: 30%; animation-delay: 0.5s; }
+    .sh-cape-s3 { width: 40%; height: 25%; background: rgba(236,72,153,0.1); left: 33%; top: 50%; animation-delay: 1s; }
+    @keyframes sh-cape-flow {
+      0%, 100% { transform: translateY(0) scaleX(1); opacity: 0.8; }
+      50% { transform: translateY(10px) scaleX(1.1); opacity: 1; }
+    }
+
+    /* Niche pills */
+    .sh-niche {
+      position: absolute; z-index: 20;
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 14px; border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px);
+      color: #fafafa; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.02em; white-space: nowrap;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .sh-niche:hover { transform: scale(1.08) !important; box-shadow: 0 8px 40px rgba(59,130,246,0.2); }
+    .sh-niche-icon {
+      width: 28px; height: 28px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .sh-niche-icon svg { width: 16px; height: 16px; }
+
+    .sh-n-video    { top: 6%; left: 50%; transform: translateX(-50%); animation: sh-fy 5s ease-in-out infinite; }
+    .sh-n-ai       { top: 18%; right: 0; animation: sh-fxy 6s ease-in-out infinite; }
+    .sh-n-auto     { top: 46%; right: -2%; animation: sh-fx 5.5s ease-in-out infinite; }
+    .sh-n-smm      { bottom: 18%; right: 2%; animation: sh-fxy 5s ease-in-out infinite reverse; }
+    .sh-n-seo      { bottom: 4%; left: 50%; transform: translateX(-50%); animation: sh-fy 6s ease-in-out infinite reverse; }
+    .sh-n-design   { bottom: 18%; left: 2%; animation: sh-fxy 5.5s ease-in-out infinite; animation-delay: 1s; }
+    .sh-n-product  { top: 46%; left: -2%; animation: sh-fx 6s ease-in-out infinite reverse; }
+
+    @keyframes sh-fy { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-10px); } }
+    @keyframes sh-fx { 0%, 100% { transform: translateY(-50%) translateX(0); } 50% { transform: translateY(-50%) translateX(8px); } }
+    @keyframes sh-fxy { 0%, 100% { transform: translate(0,0); } 33% { transform: translate(6px,-8px); } 66% { transform: translate(-4px,-4px); } }
+
+    .sh-particles { position: absolute; inset: 0; pointer-events: none; }
+    .sh-p {
+      position: absolute; width: 3px; height: 3px; border-radius: 50%;
+      background: rgba(59,130,246,0.5);
+      animation: sh-pdrift 8s linear infinite;
+    }
+    .sh-p:nth-child(2) { left:15%; top:20%; animation-delay:1s; background:rgba(139,92,246,0.4); animation-duration:10s; }
+    .sh-p:nth-child(3) { left:80%; top:30%; animation-delay:2s; background:rgba(34,197,94,0.4); animation-duration:7s; }
+    .sh-p:nth-child(4) { left:25%; top:70%; animation-delay:3s; background:rgba(236,72,153,0.4); animation-duration:9s; }
+    .sh-p:nth-child(5) { left:70%; top:75%; animation-delay:0.5s; background:rgba(245,158,11,0.4); animation-duration:11s; }
+    .sh-p:nth-child(6) { left:45%; top:15%; animation-delay:4s; background:rgba(59,130,246,0.3); animation-duration:8s; }
+    .sh-p:nth-child(7) { left:90%; top:50%; animation-delay:2.5s; background:rgba(6,182,212,0.4); animation-duration:9s; }
+    .sh-p:nth-child(8) { left:10%; top:50%; animation-delay:1.5s; background:rgba(139,92,246,0.3); animation-duration:12s; }
+    @keyframes sh-pdrift {
+      0% { transform: translateY(0) scale(1); opacity: 0; }
+      10% { opacity: 1; } 90% { opacity: 1; }
+      100% { transform: translateY(-60px) scale(0); opacity: 0; }
+    }
+
+    @media (max-width: 860px) {
+      .about-layout { grid-template-columns: 1fr; }
+      .superhero-scene { max-width: 400px; margin: 2rem auto 0; }
+      .sh-niche { font-size: 0.65rem; padding: 6px 10px; }
+      .sh-niche-icon { width: 22px; height: 22px; }
+      .sh-niche-icon svg { width: 13px; height: 13px; }
     }
 
     /* --- CHROMATIC GLOW --- */
@@ -276,6 +431,108 @@
       background: rgba(59,130,246,0.1); color: var(--accent); font-weight: 500;
     }
 
+    /* --- TOOL STACK --- */
+    .apps-toggle {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin: 2rem 0 0;
+      padding: 0.7rem 1.8rem; border-radius: 60px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text-secondary); font-size: 0.85rem; font-weight: 600;
+      font-family: var(--font-body); cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .apps-toggle:hover { border-color: var(--border-bright); color: var(--text); background: var(--surface-hover); }
+    .apps-toggle svg { transition: transform 0.3s ease; }
+    .apps-toggle.open svg { transform: rotate(180deg); }
+    .footer-tools {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin: 1rem 0 0;
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, margin 0.3s ease;
+    }
+    .footer-tools.open {
+      max-height: 600px; opacity: 1; margin-top: 1.5rem;
+    }
+    .tool-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 8px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text-secondary); font-size: 0.78rem; font-weight: 500;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+    .tool-chip:hover {
+      border-color: var(--border-bright);
+      color: var(--text);
+      background: var(--surface-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .tool-chip svg {
+      width: 16px; height: 16px; flex-shrink: 0;
+    }
+
+    /* --- MY WORKS --- */
+    .works-grid {
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .work-block {
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .work-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 1.5rem; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .work-header:hover { background: var(--surface-hover); }
+    .work-header-left {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .work-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .work-icon svg { width: 20px; height: 20px; }
+    .work-title {
+      font-family: var(--font-heading); font-size: 1.05rem; font-weight: 600; color: var(--text);
+    }
+    .work-subtitle {
+      font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;
+    }
+    .work-chevron {
+      transition: transform 0.3s ease; color: var(--text-muted);
+    }
+    .work-block.open .work-chevron { transform: rotate(180deg); }
+    .work-body {
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    }
+    .work-block.open .work-body {
+      max-height: 500px; opacity: 1;
+    }
+    .work-links {
+      padding: 0 1.5rem 1.25rem; display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .work-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 8px;
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      color: var(--text-secondary); font-size: 0.8rem; font-weight: 500;
+      text-decoration: none; transition: all 0.25s ease;
+    }
+    .work-link:hover {
+      border-color: var(--border-bright); color: var(--text);
+      background: var(--surface-hover); transform: translateY(-1px);
+    }
+    .work-link svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .work-placeholder {
+      padding: 0 1.5rem 1.25rem;
+      font-size: 0.8rem; color: var(--text-muted); font-style: italic;
+    }
+
     /* --- CONTACT --- */
     .contact-section {
       text-align: center; padding: 6rem 2rem;
@@ -335,6 +592,7 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#clients">Clients</a></li>
+      <li><a href="#works">Works</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -372,13 +630,102 @@
   <section id="about" class="reveal">
     <div class="section-label">About</div>
     <div class="section-title">Not a freelancer.<br>Your remote creative department.</div>
-    <p class="about-text">
-      I started managing social media accounts and designing graphics for US marketing agencies. Then clients needed video, so I learned to edit <strong>podcasts, ads, reels, lectures, and long-form content</strong>. Then AI tools arrived, so I started producing <strong>AI animations, AI-generated music, and AI video</strong> before most people had heard of them.
-      <br><br>
-      Now I build the systems too. <strong>Marketing automation, SEO strategy, lead generation, GHL workflows</strong>, and I've even shipped a full iOS app using AI-assisted development. I don't just create your content. I create the machine that runs it.
-    </p>
-    <div class="about-highlight">
-      Most offshore hires do one thing. I replace five: content producer, social media manager, video editor, automation specialist, and AI creative, all from one seat in the Philippines.
+    <div class="about-layout">
+      <div class="about-content">
+        <p class="about-text">
+          I started managing social media accounts and designing graphics for US marketing agencies. Then clients needed video, so I learned to edit <strong>podcasts, ads, reels, lectures, and long-form content</strong>. Then AI tools arrived, so I started producing <strong>AI animations, AI-generated music, and AI video</strong> before most people had heard of them.
+          <br><br>
+          Now I build the systems too. <strong>Marketing automation, SEO strategy, lead generation, GHL workflows</strong>, and I've even shipped a full iOS app using AI-assisted development. I don't just create your content. I create the machine that runs it.
+        </p>
+        <div class="about-highlight">
+          Most offshore hires do one thing. I replace five: content producer, social media manager, video editor, automation specialist, and AI creative, all from one seat in the Philippines.
+        </div>
+      </div>
+
+      <!-- Superhero graphic -->
+      <div class="superhero-scene">
+        <div class="sh-grid-bg"></div>
+        <div class="sh-energy-field"></div>
+        <div class="sh-orbit sh-orbit-1"></div>
+        <div class="sh-orbit sh-orbit-2"></div>
+        <div class="sh-orbit sh-orbit-3"></div>
+
+        <div class="sh-particles">
+          <div class="sh-p"></div><div class="sh-p"></div><div class="sh-p"></div><div class="sh-p"></div>
+          <div class="sh-p"></div><div class="sh-p"></div><div class="sh-p"></div><div class="sh-p"></div>
+        </div>
+
+        <svg class="sh-beams" viewBox="0 0 100 100" fill="none" preserveAspectRatio="xMidYMid meet">
+          <line x1="50" y1="50" x2="50" y2="8" class="sh-beam" stroke="rgba(239,68,68,0.15)" stroke-width="0.3"/>
+          <line x1="50" y1="50" x2="92" y2="20" class="sh-beam" stroke="rgba(139,92,246,0.12)" stroke-width="0.3"/>
+          <line x1="50" y1="50" x2="98" y2="50" class="sh-beam" stroke="rgba(34,197,94,0.12)" stroke-width="0.3"/>
+          <line x1="50" y1="50" x2="90" y2="78" class="sh-beam" stroke="rgba(59,130,246,0.12)" stroke-width="0.3"/>
+          <line x1="50" y1="50" x2="50" y2="94" class="sh-beam" stroke="rgba(245,158,11,0.12)" stroke-width="0.3"/>
+          <line x1="50" y1="50" x2="10" y2="78" class="sh-beam" stroke="rgba(236,72,153,0.12)" stroke-width="0.3"/>
+          <line x1="50" y1="50" x2="2" y2="50" class="sh-beam" stroke="rgba(6,182,212,0.12)" stroke-width="0.3"/>
+        </svg>
+
+        <div class="sh-photo-wrap">
+          <div class="sh-photo-glow"></div>
+          <div class="sh-photo-ring"></div>
+          <img src="rav-hero.jpg" alt="Rav Doctolero" class="sh-photo">
+          <div class="sh-cape">
+            <div class="sh-cape-s sh-cape-s1"></div>
+            <div class="sh-cape-s sh-cape-s2"></div>
+            <div class="sh-cape-s sh-cape-s3"></div>
+          </div>
+        </div>
+
+        <!-- Video Production -->
+        <div class="sh-niche sh-n-video">
+          <div class="sh-niche-icon" style="background:rgba(239,68,68,0.15)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          </div>
+          Video
+        </div>
+        <!-- AI Creative -->
+        <div class="sh-niche sh-n-ai">
+          <div class="sh-niche-icon" style="background:rgba(139,92,246,0.15)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93L12 22"/><path d="M12 2a4 4 0 0 0-4 4c0 1.95 1.4 3.58 3.25 3.93"/><path d="M9 13h6"/><path d="M8 17h8"/></svg>
+          </div>
+          AI Creative
+        </div>
+        <!-- Automation -->
+        <div class="sh-niche sh-n-auto">
+          <div class="sh-niche-icon" style="background:rgba(34,197,94,0.15)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/></svg>
+          </div>
+          Automation
+        </div>
+        <!-- Social Media -->
+        <div class="sh-niche sh-n-smm">
+          <div class="sh-niche-icon" style="background:rgba(59,130,246,0.15)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </div>
+          Social Media
+        </div>
+        <!-- SEO -->
+        <div class="sh-niche sh-n-seo">
+          <div class="sh-niche-icon" style="background:rgba(245,158,11,0.15)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/><line x1="11" y1="8" x2="11" y2="14"/></svg>
+          </div>
+          SEO
+        </div>
+        <!-- Graphic Design -->
+        <div class="sh-niche sh-n-design">
+          <div class="sh-niche-icon" style="background:rgba(236,72,153,0.15)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg>
+          </div>
+          Design
+        </div>
+        <!-- AI Products -->
+        <div class="sh-niche sh-n-product">
+          <div class="sh-niche-icon" style="background:rgba(6,182,212,0.15)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          AI Products
+        </div>
+      </div>
     </div>
   </section>
 
@@ -510,6 +857,134 @@
     </div>
   </section>
 
+  <!-- MY WORKS -->
+  <section id="works" class="reveal">
+    <div class="section-label">Portfolio</div>
+    <div class="section-title">My Works</div>
+    <p class="section-desc">Sample outputs across video, AI creative, and design.</p>
+
+    <div class="works-grid">
+
+      <!-- Video Editing -->
+      <div class="work-block" onclick="this.classList.toggle('open')">
+        <div class="work-header">
+          <div class="work-header-left">
+            <div class="work-icon" style="background:rgba(239,68,68,0.12)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            </div>
+            <div>
+              <div class="work-title">Video Editing</div>
+              <div class="work-subtitle">5 categories</div>
+            </div>
+          </div>
+          <svg class="work-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="work-body">
+          <div class="work-links">
+            <a href="#" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Sample Vlog</a>
+            <a href="#" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Podcast</a>
+            <a href="#" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Lecture</a>
+            <a href="#" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Short Form Video</a>
+            <a href="#" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Ads</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Creative -->
+      <div class="work-block" onclick="this.classList.toggle('open')">
+        <div class="work-header">
+          <div class="work-header-left">
+            <div class="work-icon" style="background:rgba(139,92,246,0.12)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93L12 22"/><path d="M12 2a4 4 0 0 0-4 4c0 1.95 1.4 3.58 3.25 3.93"/><path d="M9 13h6"/><path d="M8 17h8"/></svg>
+            </div>
+            <div>
+              <div class="work-title">AI Creative</div>
+              <div class="work-subtitle">3 categories</div>
+            </div>
+          </div>
+          <svg class="work-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="work-body">
+          <div class="work-links">
+            <a href="#" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> AI Animation</a>
+            <a href="#" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> AI Music</a>
+            <a href="#" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> AI Video</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graphic Design -->
+      <div class="work-block" onclick="this.classList.toggle('open')">
+        <div class="work-header">
+          <div class="work-header-left">
+            <div class="work-icon" style="background:rgba(236,72,153,0.12)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg>
+            </div>
+            <div>
+              <div class="work-title">Graphic Design</div>
+              <div class="work-subtitle">1 portfolio</div>
+            </div>
+          </div>
+          <svg class="work-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="work-body">
+          <div class="work-links">
+            <a href="https://drive.google.com/file/d/1blBwthqLNdgOhfKPOeKFTnpFElLGjNnS/view?usp=sharing" target="_blank" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Graphic Design Portfolio</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Apps and Tools -->
+    <button class="apps-toggle" onclick="this.classList.toggle('open');document.getElementById('footer-tools').classList.toggle('open')">
+      Apps and Tools I Use
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="footer-tools" id="footer-tools">
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="18" rx="3" fill="#1a1a2e"/><path d="M7 8l4 4-4 4" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 16h4" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg> DaVinci Resolve</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#00005b"/><text x="12" y="16" text-anchor="middle" fill="#9999ff" font-size="9" font-weight="700" font-family="sans-serif">Pr</text></svg> Premiere Pro</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#001e36"/><text x="12" y="16" text-anchor="middle" fill="#99f" font-size="9" font-weight="700" font-family="sans-serif">Ae</text></svg> After Effects</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#2c2c2c"/><text x="12" y="16" text-anchor="middle" fill="#ff6d00" font-size="8" font-weight="700" font-family="sans-serif">Ai</text></svg> Illustrator</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#001d26"/><text x="12" y="16" text-anchor="middle" fill="#31a8ff" font-size="9" font-weight="700" font-family="sans-serif">Ps</text></svg> Photoshop</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7d2ae8"/><circle cx="12" cy="12" r="4" fill="#fff"/></svg> Canva</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="10" fill="#1a1a2e"/><path d="M8 8h8v8H8z" fill="#00de7a" rx="1"/></svg> CapCut</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#d97706"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="8" font-weight="700" font-family="sans-serif">CL</text></svg> Claude AI</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#10a37f"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="7" font-weight="700" font-family="sans-serif">GPT</text></svg> ChatGPT</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0a0a23"/><circle cx="12" cy="12" r="5" stroke="#818cf8" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="2" fill="#818cf8"/></svg> Midjourney</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#1e1e2e"/><path d="M7 17V7l10 10" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Runway</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#111827"/><path d="M8 12h8M12 8v8" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/></svg> DALL-E</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#1a1a2e"/><path d="M7 12c0-3 2.5-5 5-5s5 2 5 5-2.5 5-5 5" stroke="#34d399" stroke-width="1.5" stroke-linecap="round"/></svg> Suno AI</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0f172a"/><path d="M8 16V8l8 4-8 4z" fill="#38bdf8"/></svg> ElevenLabs</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#18181b"/><path d="M8 8l4 4-4 4M14 8l-4 4 4 4" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Claude Code</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#1c1917"/><circle cx="12" cy="12" r="5" stroke="#fb923c" stroke-width="1.5" fill="none"/><path d="M12 9v3l2 2" stroke="#fb923c" stroke-width="1.5" stroke-linecap="round"/></svg> Kling AI</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0c0a09"/><path d="M7 12h10M12 7v10" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/></svg> Cursor</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#003b5c"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="6" font-weight="700" font-family="sans-serif">GHL</text></svg> GHL</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#4285f4"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="8" font-weight="700" font-family="sans-serif">G</text></svg> Google Ads</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#1877f2"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="10" font-weight="700" font-family="sans-serif">f</text></svg> Meta Ads</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0f9d58"/><path d="M7 12h10M7 8h10M7 16h6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg> Google Sheets</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#ff4500"/><path d="M8 8h3v8H8zM13 8h3v8h-3z" fill="#fff"/></svg> Zapier</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#00c4cc"/><circle cx="12" cy="12" r="5" fill="#fff" opacity="0.9"/></svg> Mailchimp</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#21759b"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="7" font-weight="700" font-family="sans-serif">WP</text></svg> WordPress</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#ff0000"/><path d="M10 8v8l6-4-6-4z" fill="#fff"/></svg> YouTube</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#000"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="7" font-weight="700" font-family="sans-serif">TT</text></svg> TikTok</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#e4405f"/><circle cx="12" cy="12" r="4" stroke="#fff" stroke-width="1.5" fill="none"/><circle cx="17" cy="7" r="1" fill="#fff"/></svg> Instagram</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0a66c2"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="sans-serif">in</text></svg> LinkedIn</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#1877f2"/><text x="12" y="17" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" font-family="sans-serif">f</text></svg> Facebook</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#000"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="10" font-weight="700" font-family="sans-serif">𝕏</text></svg> X</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#007acc"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="6" font-weight="700" font-family="sans-serif">VS</text></svg> VS Code</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#24292e"/><path d="M12 6C8 6 6 9 6 12c0 2.5 1.5 5 4 5.5v-2c-1.5-.5-2-1.5-2-2.5 0-.5.5-1 1-1h1v-1c0-1.5 1-2 2-2s2 .5 2 2v1h1c.5 0 1 .5 1 1 0 1-.5 2-2 2.5v2c2.5-.5 4-3 4-5.5 0-3-2-6-6-6z" fill="#fff"/></svg> GitHub</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#f24e1e"/><circle cx="9" cy="8" r="3" stroke="#fff" stroke-width="1" fill="none"/><circle cx="15" cy="8" r="3" stroke="#fff" stroke-width="1" fill="none"/><circle cx="9" cy="14" r="3" stroke="#fff" stroke-width="1" fill="none"/></svg> Figma</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#000"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="7" font-weight="700" font-family="sans-serif">N</text></svg> Notion</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#f05138"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="6" font-weight="700" font-family="sans-serif">Sw</text></svg> Swift</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#007acc"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="6" font-weight="700" font-family="sans-serif">Xc</text></svg> Xcode</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#1a73e8"/><path d="M8 8v8h8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="2" fill="#fff"/></svg> Riverside</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#5865f2"/><path d="M7 12l4 4 6-8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Instantly.ai</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#2563eb"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><path d="M12 10v4l2-1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Seamless AI</span>
+      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#7b68ee"/><path d="M9 7v10M15 7v10M7 12h10" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg> ClickUp</span>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact" class="contact-section reveal">
     <div class="contact-title">Let's build something</div>
@@ -524,6 +999,7 @@
         Email Me
       </a>
     </div>
+
   </section>
 
   <footer>&copy; 2026 Rav Doctolero. All rights reserved.</footer>
