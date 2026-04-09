@@ -977,24 +977,52 @@
     </div>
 
     <!-- Apps and Tools -->
-    <div class="tools-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+    <button class="apps-toggle" onclick="this.classList.toggle('open');document.getElementById('main-tools').classList.toggle('open')">
       Apps and Tools I Use
-      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-    </div>
-    <div class="tools-body">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="tools-body" id="main-tools">
       <div class="tools-grid">
         <span class="tool-chip">DaVinci Resolve</span>
-        <span class="tool-chip">GoHighLevel</span>
-        <span class="tool-chip">Claude Code</span>
-        <span class="tool-chip">HeyGen</span>
+        <span class="tool-chip">Premiere Pro</span>
+        <span class="tool-chip">After Effects</span>
+        <span class="tool-chip">Illustrator</span>
+        <span class="tool-chip">Photoshop</span>
         <span class="tool-chip">Canva</span>
-        <span class="tool-chip">Instantly.ai</span>
-        <span class="tool-chip">Google Workspace</span>
-        <span class="tool-chip">Frase</span>
-        <span class="tool-chip">Apollo</span>
-        <span class="tool-chip">Seamless AI</span>
-        <span class="tool-chip">Xcode</span>
+        <span class="tool-chip">CapCut</span>
+        <span class="tool-chip">Claude AI</span>
+        <span class="tool-chip">ChatGPT</span>
+        <span class="tool-chip">Midjourney</span>
+        <span class="tool-chip">Runway</span>
+        <span class="tool-chip">DALL-E</span>
+        <span class="tool-chip">Suno AI</span>
+        <span class="tool-chip">ElevenLabs</span>
+        <span class="tool-chip">Claude Code</span>
+        <span class="tool-chip">Kling AI</span>
+        <span class="tool-chip">Cursor</span>
+        <span class="tool-chip">GHL</span>
+        <span class="tool-chip">Google Ads</span>
+        <span class="tool-chip">Meta Ads</span>
+        <span class="tool-chip">Google Sheets</span>
+        <span class="tool-chip">Zapier</span>
+        <span class="tool-chip">Mailchimp</span>
+        <span class="tool-chip">WordPress</span>
+        <span class="tool-chip">YouTube</span>
+        <span class="tool-chip">TikTok</span>
+        <span class="tool-chip">Instagram</span>
+        <span class="tool-chip">LinkedIn</span>
+        <span class="tool-chip">Facebook</span>
+        <span class="tool-chip">X</span>
         <span class="tool-chip">VS Code</span>
+        <span class="tool-chip">GitHub</span>
+        <span class="tool-chip">Figma</span>
+        <span class="tool-chip">Notion</span>
+        <span class="tool-chip">Swift</span>
+        <span class="tool-chip">Xcode</span>
+        <span class="tool-chip">Riverside</span>
+        <span class="tool-chip">Instantly.ai</span>
+        <span class="tool-chip">Seamless AI</span>
+        <span class="tool-chip">ClickUp</span>
       </div>
     </div>
   </section>
@@ -1035,134 +1063,6 @@
         <div class="tl-role">AI-Powered Marketing Orchestrator</div>
         <div class="tl-desc">AI engineering, SEO strategy, GHL automation, nurture campaigns, 30-day SMM campaigns, client management, lead generation. 85+ tasks delivered in 23 straight working days. Shipped a full iOS app via AI-assisted development.</div>
       </div>
-    </div>
-  </section>
-
-  <!-- MY WORKS -->
-  <section id="works" class="reveal">
-    <div class="section-label">Portfolio</div>
-    <div class="section-title">My Works</div>
-    <p class="section-desc">Sample outputs across video, AI creative, and design.</p>
-
-    <div class="works-grid">
-
-      <!-- Video Editing -->
-      <div class="work-block" onclick="this.classList.toggle('open')">
-        <div class="work-header">
-          <div class="work-header-left">
-            <div class="work-icon" style="background:rgba(239,68,68,0.12)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-            </div>
-            <div>
-              <div class="work-title">Video Editing</div>
-              <div class="work-subtitle">5 categories</div>
-            </div>
-          </div>
-          <svg class="work-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-        <div class="work-body">
-          <div class="work-links">
-            <a href="#" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Sample Vlog</a>
-            <a href="#" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Podcast</a>
-            <a href="#" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Lecture</a>
-            <a href="#" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Short Form Video</a>
-            <a href="#" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Ads</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- AI Creative -->
-      <div class="work-block" onclick="this.classList.toggle('open')">
-        <div class="work-header">
-          <div class="work-header-left">
-            <div class="work-icon" style="background:rgba(139,92,246,0.12)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93L12 22"/><path d="M12 2a4 4 0 0 0-4 4c0 1.95 1.4 3.58 3.25 3.93"/><path d="M9 13h6"/><path d="M8 17h8"/></svg>
-            </div>
-            <div>
-              <div class="work-title">AI Creative</div>
-              <div class="work-subtitle">3 categories</div>
-            </div>
-          </div>
-          <svg class="work-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-        <div class="work-body">
-          <div class="work-links">
-            <a href="#" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> AI Animation</a>
-            <a href="#" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> AI Music</a>
-            <a href="#" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> AI Video</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Graphic Design -->
-      <div class="work-block" onclick="this.classList.toggle('open')">
-        <div class="work-header">
-          <div class="work-header-left">
-            <div class="work-icon" style="background:rgba(236,72,153,0.12)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg>
-            </div>
-            <div>
-              <div class="work-title">Graphic Design</div>
-              <div class="work-subtitle">1 portfolio</div>
-            </div>
-          </div>
-          <svg class="work-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-        <div class="work-body">
-          <div class="work-links">
-            <a href="https://drive.google.com/file/d/1blBwthqLNdgOhfKPOeKFTnpFElLGjNnS/view?usp=sharing" target="_blank" class="work-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Graphic Design Portfolio</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Apps and Tools -->
-    <button class="apps-toggle" onclick="this.classList.toggle('open');document.getElementById('footer-tools').classList.toggle('open')">
-      Apps and Tools I Use
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-    </button>
-    <div class="footer-tools" id="footer-tools">
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="18" rx="3" fill="#1a1a2e"/><path d="M7 8l4 4-4 4" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 16h4" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/></svg> DaVinci Resolve</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#00005b"/><text x="12" y="16" text-anchor="middle" fill="#9999ff" font-size="9" font-weight="700" font-family="sans-serif">Pr</text></svg> Premiere Pro</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#001e36"/><text x="12" y="16" text-anchor="middle" fill="#99f" font-size="9" font-weight="700" font-family="sans-serif">Ae</text></svg> After Effects</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#2c2c2c"/><text x="12" y="16" text-anchor="middle" fill="#ff6d00" font-size="8" font-weight="700" font-family="sans-serif">Ai</text></svg> Illustrator</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#001d26"/><text x="12" y="16" text-anchor="middle" fill="#31a8ff" font-size="9" font-weight="700" font-family="sans-serif">Ps</text></svg> Photoshop</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#7d2ae8"/><circle cx="12" cy="12" r="4" fill="#fff"/></svg> Canva</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="10" fill="#1a1a2e"/><path d="M8 8h8v8H8z" fill="#00de7a" rx="1"/></svg> CapCut</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#d97706"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="8" font-weight="700" font-family="sans-serif">CL</text></svg> Claude AI</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#10a37f"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="7" font-weight="700" font-family="sans-serif">GPT</text></svg> ChatGPT</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0a0a23"/><circle cx="12" cy="12" r="5" stroke="#818cf8" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="2" fill="#818cf8"/></svg> Midjourney</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#1e1e2e"/><path d="M7 17V7l10 10" stroke="#e879f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Runway</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#111827"/><path d="M8 12h8M12 8v8" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/></svg> DALL-E</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#1a1a2e"/><path d="M7 12c0-3 2.5-5 5-5s5 2 5 5-2.5 5-5 5" stroke="#34d399" stroke-width="1.5" stroke-linecap="round"/></svg> Suno AI</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0f172a"/><path d="M8 16V8l8 4-8 4z" fill="#38bdf8"/></svg> ElevenLabs</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#18181b"/><path d="M8 8l4 4-4 4M14 8l-4 4 4 4" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Claude Code</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#1c1917"/><circle cx="12" cy="12" r="5" stroke="#fb923c" stroke-width="1.5" fill="none"/><path d="M12 9v3l2 2" stroke="#fb923c" stroke-width="1.5" stroke-linecap="round"/></svg> Kling AI</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0c0a09"/><path d="M7 12h10M12 7v10" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/></svg> Cursor</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#003b5c"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="6" font-weight="700" font-family="sans-serif">GHL</text></svg> GHL</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#4285f4"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="8" font-weight="700" font-family="sans-serif">G</text></svg> Google Ads</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#1877f2"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="10" font-weight="700" font-family="sans-serif">f</text></svg> Meta Ads</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0f9d58"/><path d="M7 12h10M7 8h10M7 16h6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg> Google Sheets</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#ff4500"/><path d="M8 8h3v8H8zM13 8h3v8h-3z" fill="#fff"/></svg> Zapier</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#00c4cc"/><circle cx="12" cy="12" r="5" fill="#fff" opacity="0.9"/></svg> Mailchimp</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#21759b"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="7" font-weight="700" font-family="sans-serif">WP</text></svg> WordPress</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#ff0000"/><path d="M10 8v8l6-4-6-4z" fill="#fff"/></svg> YouTube</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#000"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="7" font-weight="700" font-family="sans-serif">TT</text></svg> TikTok</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#e4405f"/><circle cx="12" cy="12" r="4" stroke="#fff" stroke-width="1.5" fill="none"/><circle cx="17" cy="7" r="1" fill="#fff"/></svg> Instagram</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#0a66c2"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="sans-serif">in</text></svg> LinkedIn</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#1877f2"/><text x="12" y="17" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" font-family="sans-serif">f</text></svg> Facebook</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#000"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="10" font-weight="700" font-family="sans-serif">𝕏</text></svg> X</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#007acc"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="6" font-weight="700" font-family="sans-serif">VS</text></svg> VS Code</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#24292e"/><path d="M12 6C8 6 6 9 6 12c0 2.5 1.5 5 4 5.5v-2c-1.5-.5-2-1.5-2-2.5 0-.5.5-1 1-1h1v-1c0-1.5 1-2 2-2s2 .5 2 2v1h1c.5 0 1 .5 1 1 0 1-.5 2-2 2.5v2c2.5-.5 4-3 4-5.5 0-3-2-6-6-6z" fill="#fff"/></svg> GitHub</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#f24e1e"/><circle cx="9" cy="8" r="3" stroke="#fff" stroke-width="1" fill="none"/><circle cx="15" cy="8" r="3" stroke="#fff" stroke-width="1" fill="none"/><circle cx="9" cy="14" r="3" stroke="#fff" stroke-width="1" fill="none"/></svg> Figma</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#000"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="7" font-weight="700" font-family="sans-serif">N</text></svg> Notion</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#f05138"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="6" font-weight="700" font-family="sans-serif">Sw</text></svg> Swift</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#007acc"/><text x="12" y="16" text-anchor="middle" fill="#fff" font-size="6" font-weight="700" font-family="sans-serif">Xc</text></svg> Xcode</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#1a73e8"/><path d="M8 8v8h8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="2" fill="#fff"/></svg> Riverside</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#5865f2"/><path d="M7 12l4 4 6-8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Instantly.ai</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#2563eb"/><path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><path d="M12 10v4l2-1" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Seamless AI</span>
-      <span class="tool-chip"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#7b68ee"/><path d="M9 7v10M15 7v10M7 12h10" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg> ClickUp</span>
     </div>
   </section>
 
