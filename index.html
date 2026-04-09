@@ -141,21 +141,93 @@
       color: var(--text); border: 1px solid rgba(139,92,246,0.3);
     }
     .btn-portfolio:hover { background: linear-gradient(135deg, rgba(139,92,246,0.25), rgba(59,130,246,0.25)); border-color: rgba(139,92,246,0.5); transform: translateY(-2px); }
-    .portfolio-links {
-      display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-top: 1rem;
+    /* --- WORKS ACCORDION --- */
+    .works-accordion { display: flex; flex-direction: column; gap: 1rem; }
+    .works-group { border-radius: var(--radius); overflow: hidden; }
+    .works-group-inner {
+      border-radius: var(--radius); background: var(--bg);
     }
-    .portfolio-links a {
+    .works-header {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1.5rem 1.75rem; cursor: pointer;
+      user-select: none; position: relative;
+    }
+    .works-header-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .works-header-icon svg { width: 24px; height: 24px; }
+    .works-header-icon.red { background: rgba(239,68,68,0.15); }
+    .works-header-icon.red svg { stroke: #ef4444; fill: none; stroke-width: 1.8; }
+    .works-header-icon.violet { background: rgba(168,85,247,0.15); }
+    .works-header-icon.violet svg { stroke: #a855f7; fill: none; stroke-width: 1.8; }
+    .works-header-icon.orange { background: rgba(249,115,22,0.15); }
+    .works-header-icon.orange svg { stroke: #f97316; fill: none; stroke-width: 1.8; }
+    .works-header-icon.blue { background: rgba(59,130,246,0.15); }
+    .works-header-icon.blue svg { stroke: #3b82f6; fill: none; stroke-width: 1.8; }
+    .works-header-info { flex: 1; }
+    .works-header-info h3 {
+      font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600;
+      color: var(--text); margin-bottom: 0.1rem;
+    }
+    .works-header-info span { font-size: 0.75rem; color: var(--text-muted); }
+    .works-chevron {
+      width: 20px; height: 20px; stroke: var(--text-muted); fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      transition: transform 0.3s ease; flex-shrink: 0;
+    }
+    .works-group.open .works-chevron { transform: rotate(180deg); }
+    .works-body {
+      max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+      padding: 0 1.75rem;
+    }
+    .works-group.open .works-body { max-height: 300px; }
+    .works-links {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      padding-bottom: 1.5rem;
+    }
+    .works-links a {
       display: inline-flex; align-items: center; gap: 0.4rem;
-      padding: 0.55rem 1.25rem; border-radius: 60px; text-decoration: none;
+      padding: 0.5rem 1.1rem; border-radius: 60px; text-decoration: none;
       font-weight: 500; font-size: 0.8rem; color: var(--text-secondary);
       background: var(--surface); border: 1px solid var(--border);
-      transition: all 0.3s ease; font-family: var(--font-body);
+      transition: all 0.25s ease; font-family: var(--font-body);
     }
-    .portfolio-links a:hover {
+    .works-links a:hover {
       color: var(--text); border-color: var(--border-bright);
-      background: var(--surface-hover); transform: translateY(-2px);
+      background: var(--surface-hover); transform: translateY(-1px);
     }
-    .portfolio-links svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .works-links svg {
+      width: 12px; height: 12px; stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .tools-toggle {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.5rem; border-radius: var(--radius);
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text-secondary); font-size: 0.85rem; font-weight: 500;
+      cursor: pointer; user-select: none; transition: all 0.25s ease;
+      font-family: var(--font-body); margin-top: 0.5rem;
+    }
+    .tools-toggle:hover { color: var(--text); border-color: var(--border-bright); }
+    .tools-toggle svg {
+      width: 14px; height: 14px; stroke: currentColor; fill: none;
+      stroke-width: 2; transition: transform 0.3s ease;
+    }
+    .tools-toggle.open svg { transform: rotate(180deg); }
+    .tools-body {
+      max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+      margin-top: 0.75rem;
+    }
+    .tools-body.open { max-height: 200px; }
+    .tools-grid {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .tool-chip {
+      padding: 0.4rem 0.9rem; border-radius: 60px; font-size: 0.75rem;
+      font-weight: 500; color: var(--text-muted); background: var(--surface);
+      border: 1px solid var(--border); font-family: var(--font-body);
+    }
 
     /* --- SECTIONS --- */
     section { padding: clamp(4rem, 8vw, 8rem) 2rem; max-width: 1100px; margin: 0 auto; }
@@ -620,6 +692,7 @@
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
+      <li><a href="#works">Works</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#works">Works</a></li>
       <li><a href="#clients">Clients</a></li>
@@ -652,24 +725,6 @@
       <a href="mailto:doctoleroraval@gmail.com" class="btn btn-email">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         Email Me
-      </a>
-    </div>
-    <div class="portfolio-links">
-      <a href="https://drive.google.com/drive/folders/15ibdPwiM2-EuM1BkVhNH60nTsutNVvb8" target="_blank">
-        <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-        Vlogs
-      </a>
-      <a href="https://drive.google.com/drive/folders/1g5DI_mRVfhpbKEo0MB7rUmz4Tx6ASi46" target="_blank">
-        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        Lectures
-      </a>
-      <a href="https://drive.google.com/drive/folders/1BQ-beWJbC0KqYv40ZhFM_1jO07Vv4_Sk" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><circle cx="12" cy="12" r="10"/></svg>
-        Short-form
-      </a>
-      <a href="https://drive.google.com/drive/folders/1UzLtuMXF-_a2WPlEavU12_dGQVPmGuyU" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-        AI Music
       </a>
     </div>
   </section>
@@ -818,6 +873,129 @@
         <h3>AI Product Building</h3>
         <p>Ideas to shipped products using AI-assisted development. Built and delivered a complete iOS fitness app through Claude Code. Product thinking meets AI execution.</p>
       </div></div>
+    </div>
+  </section>
+
+  <!-- MY WORKS -->
+  <section id="works" class="reveal">
+    <div class="section-label">Portfolio</div>
+    <div class="section-title">My Works</div>
+    <p class="section-desc">Sample outputs across video, AI creative, and design.</p>
+
+    <div class="works-accordion">
+
+      <!-- Video Editing -->
+      <div class="glow-wrap"><div class="glow-inner works-group open" onclick="this.classList.toggle('open')">
+        <div class="works-header">
+          <div class="works-header-icon red">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          </div>
+          <div class="works-header-info">
+            <h3>Video Editing</h3>
+            <span>5 categories</span>
+          </div>
+          <svg class="works-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="works-body">
+          <div class="works-links">
+            <a href="https://drive.google.com/drive/folders/15ibdPwiM2-EuM1BkVhNH60nTsutNVvb8" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Sample Vlog
+            </a>
+            <a href="#" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Podcast
+            </a>
+            <a href="https://drive.google.com/drive/folders/1g5DI_mRVfhpbKEo0MB7rUmz4Tx6ASi46" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Lecture
+            </a>
+            <a href="https://drive.google.com/drive/folders/1BQ-beWJbC0KqYv40ZhFM_1jO07Vv4_Sk" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Short Form Video
+            </a>
+            <a href="#" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Ads
+            </a>
+          </div>
+        </div>
+      </div></div>
+
+      <!-- AI Creative -->
+      <div class="glow-wrap"><div class="glow-inner works-group open" onclick="this.classList.toggle('open')">
+        <div class="works-header">
+          <div class="works-header-icon violet">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
+          </div>
+          <div class="works-header-info">
+            <h3>AI Creative</h3>
+            <span>3 categories</span>
+          </div>
+          <svg class="works-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="works-body">
+          <div class="works-links">
+            <a href="#" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              AI Animation
+            </a>
+            <a href="https://drive.google.com/drive/folders/1UzLtuMXF-_a2WPlEavU12_dGQVPmGuyU" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              AI Music
+            </a>
+            <a href="#" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              AI Video
+            </a>
+          </div>
+        </div>
+      </div></div>
+
+      <!-- Graphic Design -->
+      <div class="glow-wrap"><div class="glow-inner works-group" onclick="this.classList.toggle('open')">
+        <div class="works-header">
+          <div class="works-header-icon orange">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+          </div>
+          <div class="works-header-info">
+            <h3>Graphic Design</h3>
+            <span>1 portfolio</span>
+          </div>
+          <svg class="works-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="works-body">
+          <div class="works-links">
+            <a href="#" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Design Portfolio
+            </a>
+          </div>
+        </div>
+      </div></div>
+
+    </div>
+
+    <!-- Apps and Tools -->
+    <div class="tools-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+      Apps and Tools I Use
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="tools-body">
+      <div class="tools-grid">
+        <span class="tool-chip">DaVinci Resolve</span>
+        <span class="tool-chip">GoHighLevel</span>
+        <span class="tool-chip">Claude Code</span>
+        <span class="tool-chip">HeyGen</span>
+        <span class="tool-chip">Canva</span>
+        <span class="tool-chip">Instantly.ai</span>
+        <span class="tool-chip">Google Workspace</span>
+        <span class="tool-chip">Frase</span>
+        <span class="tool-chip">Apollo</span>
+        <span class="tool-chip">Seamless AI</span>
+        <span class="tool-chip">Xcode</span>
+        <span class="tool-chip">VS Code</span>
+      </div>
     </div>
   </section>
 
@@ -1045,24 +1223,6 @@
       <a href="mailto:doctoleroraval@gmail.com" class="btn btn-email">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
         Email Me
-      </a>
-    </div>
-    <div class="portfolio-links">
-      <a href="https://drive.google.com/drive/folders/15ibdPwiM2-EuM1BkVhNH60nTsutNVvb8" target="_blank">
-        <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-        Vlogs
-      </a>
-      <a href="https://drive.google.com/drive/folders/1g5DI_mRVfhpbKEo0MB7rUmz4Tx6ASi46" target="_blank">
-        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        Lectures
-      </a>
-      <a href="https://drive.google.com/drive/folders/1BQ-beWJbC0KqYv40ZhFM_1jO07Vv4_Sk" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><circle cx="12" cy="12" r="10"/></svg>
-        Short-form
-      </a>
-      <a href="https://drive.google.com/drive/folders/1UzLtuMXF-_a2WPlEavU12_dGQVPmGuyU" target="_blank">
-        <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-        AI Music
       </a>
     </div>
 
